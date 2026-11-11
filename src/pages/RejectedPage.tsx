@@ -13,8 +13,8 @@ export default function RejectedPage() {
       actions={<Button onClick={() => navigate('/profil/corriger')}>Corriger mon profil</Button>}
     >
       {user?.rejectionReason && (
-        <p className="rounded-2xl border border-line bg-surface p-4 text-ink">
-          <span className="block text-sm font-semibold text-muted">Motif</span>
+        <p className="rounded-md border border-line bg-surface-raised p-4 text-ink">
+          <span className="type-caption block text-ink-muted">Motif</span>
           {user.rejectionReason}
         </p>
       )}

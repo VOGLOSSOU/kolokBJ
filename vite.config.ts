@@ -25,9 +25,9 @@ export default defineConfig(({ mode }) => {
           scope: '/',
           display: 'standalone',
           orientation: 'portrait',
-          // Couleurs provisoires : à aligner sur src/index.css quand le design arrive.
-          theme_color: '#0f766e',
-          background_color: '#fafaf9',
+          // Jeton « surface » de la charte (design/kolok-tokens.css), thème clair.
+          theme_color: '#FBF7F2',
+          background_color: '#FBF7F2',
           icons: [
             { src: 'pwa-192.png', sizes: '192x192', type: 'image/png' },
             { src: 'pwa-512.png', sizes: '512x512', type: 'image/png' },
@@ -35,6 +35,8 @@ export default defineConfig(({ mode }) => {
           ],
         },
         workbox: {
+          // La police fait partie de l'appli installée : disponible hors ligne.
+          globPatterns: ['**/*.{js,css,html,woff2}'],
           // L'API ne doit jamais être servie depuis le cache du service worker.
           navigateFallbackDenylist: [/^\/api\//],
         },

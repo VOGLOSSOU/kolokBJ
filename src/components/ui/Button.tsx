@@ -1,14 +1,19 @@
 import type { ButtonHTMLAttributes } from 'react'
 
+/**
+ * primary   : fond terre. Un seul par écran, pour l'action principale.
+ * secondary : contour ink, fond transparent. Toutes les autres actions.
+ * ghost     : texte seul, pour les actions discrètes (se déconnecter).
+ */
 type Variant = 'primary' | 'secondary' | 'ghost'
 
 const BASE =
-  'inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-base font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-60'
+  'type-body-strong inline-flex min-h-12 items-center justify-center gap-2 rounded-md px-6 transition-opacity active:opacity-80 disabled:cursor-not-allowed disabled:opacity-50'
 
 const VARIANTS: Record<Variant, string> = {
-  primary: 'bg-brand text-on-brand hover:bg-brand-strong',
-  secondary: 'border border-line bg-surface text-ink hover:bg-canvas',
-  ghost: 'text-brand hover:bg-brand/10',
+  primary: 'bg-terre text-on-terre',
+  secondary: 'border border-ink bg-transparent text-ink',
+  ghost: 'text-terre-ink',
 }
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {

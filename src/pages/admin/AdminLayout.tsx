@@ -1,4 +1,5 @@
 import { Link, NavLink, Outlet } from 'react-router'
+import { Logo } from '@/components/Logo'
 
 const SECTIONS = [
   { to: '/admin', label: 'À valider', end: true },
@@ -10,10 +11,13 @@ const SECTIONS = [
 export default function AdminLayout() {
   return (
     <div className="mx-auto flex min-h-dvh max-w-4xl flex-col">
-      <header className="border-b border-line bg-surface">
-        <div className="flex h-14 items-center justify-between px-5">
-          <p className="text-lg font-bold text-brand">Kolok · Admin</p>
-          <Link to="/" className="text-sm font-semibold text-muted">
+      <header className="border-b border-line bg-surface-raised">
+        <div className="flex h-14 items-center justify-between px-4">
+          <p className="type-body-strong flex items-center gap-3 text-ink-muted">
+            <Logo />
+            Admin
+          </p>
+          <Link to="/" className="type-body-strong text-terre-ink">
             Retour à l'appli
           </Link>
         </div>
@@ -25,8 +29,8 @@ export default function AdminLayout() {
                   to={section.to}
                   end={section.end}
                   className={({ isActive }) =>
-                    `block border-b-2 px-3 py-3 text-sm font-semibold whitespace-nowrap ${
-                      isActive ? 'border-brand text-brand' : 'border-transparent text-muted'
+                    `type-body-strong block border-b-2 px-3 py-3 whitespace-nowrap ${
+                      isActive ? 'border-terre text-terre-ink' : 'border-transparent text-ink-muted'
                     }`
                   }
                 >

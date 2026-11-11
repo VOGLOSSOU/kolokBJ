@@ -1,38 +1,117 @@
 @import 'tailwindcss';
 
 /*
- * Jetons de design de Kolok.
- * VALEURS PROVISOIRES : c'est le seul endroit à modifier quand la charte arrive.
- * Chaque jeton génère ses classes Tailwind (bg-brand, text-ink, border-line...).
- * Penser à reporter la couleur de marque dans vite.config.ts (manifest PWA)
- * et dans index.html (meta theme-color).
+ * La charte graphique : design/kolok-tokens.css est la seule source des couleurs,
+ * polices, espacements et rayons (thème clair et sombre). Elle est importée ici, une seule fois.
  */
-@theme {
-  /* Polices système : aucun téléchargement, important en 3G. */
-  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+@import '../design/kolok-tokens.css' layer(base);
 
-  --color-brand: #0f766e;
-  --color-brand-strong: #115e59;
-  --color-on-brand: #ffffff;
+/* Plus Jakarta Sans, police variable (graisses 200 à 800), servie par l'appli. */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url('./assets/fonts/plus-jakarta-sans-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
-  --color-canvas: #fafaf9;
-  --color-surface: #ffffff;
-  --color-ink: #1c1917;
-  --color-muted: #57534e;
-  --color-line: #e7e5e4;
+/* Lettres étendues (ɔ, ɛ, ẹ, ọ... des prénoms et noms béninois) : téléchargée seulement si une page en contient. */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url('./assets/fonts/plus-jakarta-sans-latin-ext-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
 
-  --color-danger: #b91c1c;
-  --color-success: #15803d;
-  --color-warning: #b45309;
+/*
+ * Pont entre la charte et Tailwind : chaque classe pointe sur une variable de la charte.
+ * Les palettes, tailles de texte et rayons par défaut de Tailwind sont retirés,
+ * donc une classe hors charte (bg-red-500, text-sm, rounded-xl) n'existe pas.
+ *
+ *   Couleurs      bg-terre, text-ink, border-line, text-ink-muted...
+ *   Typographie   type-display, type-title-1, type-title-2, type-body, type-body-strong, type-small, type-caption
+ *   Espacements   p-4, gap-6, mt-8... (1, 2, 3, 4, 6 et 8 = space-1 à space-8)
+ *   Rayons        rounded-sm, rounded-md, rounded-pill
+ */
+@theme inline {
+  --color-*: initial;
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-terre: var(--terre);
+  --color-on-terre: var(--on-terre);
+  --color-terre-soft: var(--terre-soft);
+  --color-terre-ink: var(--terre-ink);
+  --color-vert: var(--vert);
+  --color-vert-soft: var(--vert-soft);
+  --color-soleil: var(--soleil);
+  --color-danger: var(--danger);
+  --color-focus-ring: var(--focus-ring);
+
+  --spacing-1: var(--space-1);
+  --spacing-2: var(--space-2);
+  --spacing-3: var(--space-3);
+  --spacing-4: var(--space-4);
+  --spacing-6: var(--space-6);
+  --spacing-8: var(--space-8);
+
+  --radius-*: initial;
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-pill: var(--radius-pill);
+
+  --text-*: initial;
+}
+
+@utility type-display {
+  font: var(--text-display);
+}
+@utility type-title-1 {
+  font: var(--text-title-1);
+}
+@utility type-title-2 {
+  font: var(--text-title-2);
+}
+@utility type-body {
+  font: var(--text-body);
+}
+@utility type-body-strong {
+  font: var(--text-body-strong);
+}
+@utility type-small {
+  font: var(--text-small);
+}
+@utility type-caption {
+  font: var(--text-caption);
 }
 
 @layer base {
-  html {
+  :root {
+    color-scheme: light dark;
     -webkit-text-size-adjust: 100%;
   }
 
+  :root[data-theme='light'] {
+    color-scheme: light;
+  }
+
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+  }
+
   body {
-    @apply bg-canvas font-sans text-ink antialiased;
+    -webkit-font-smoothing: antialiased;
   }
 
   #root {

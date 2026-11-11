@@ -1,0 +1,91 @@
+/* Kolok - variables de la charte graphique (thème clair par défaut, sombre via prefers-color-scheme ou [data-theme="dark"]) */
+/* Plus Jakarta Sans est servie par l'appli elle-même (src/assets/fonts, déclarée dans src/index.css),
+   pas par Google Fonts : un appel externe bloquait l'affichage en 3G et hors ligne. */
+
+:root {
+  /* Couleurs */
+  --surface: #FBF7F2;
+  --surface-raised: #FFFFFF;
+  --line: #E8E0D5;
+  --ink: #1E2A4A;
+  --ink-muted: #5B6478;
+  --terre: #C4441E;
+  --on-terre: #FFFFFF;
+  --terre-soft: #F9E1D6;
+  --terre-ink: #A8381A;
+  --vert: #16704C;
+  --vert-soft: #DDF3E8;
+  --soleil: #F2B42C;
+  --danger: #B42318;
+  --focus-ring: #C4441E;
+
+  /* Typographie */
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --text-display: 800 40px/44px var(--font-sans);
+  --text-title-1: 700 28px/34px var(--font-sans);
+  --text-title-2: 700 20px/28px var(--font-sans);
+  --text-body: 400 16px/24px var(--font-sans);
+  --text-body-strong: 600 16px/24px var(--font-sans);
+  --text-small: 400 14px/20px var(--font-sans);
+  --text-caption: 600 12px/16px var(--font-sans);
+
+  /* Espacements (grille de 4px) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Rayons */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-pill: 999px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --surface: #17140F;
+    --surface-raised: #221E18;
+    --line: #3A342C;
+    --ink: #F3EEE6;
+    --ink-muted: #A9A39A;
+    --terre: #E8683F;
+    --on-terre: #17140F;
+    --terre-soft: #3B2219;
+    --terre-ink: #F08A66;
+    --vert: #4CC38A;
+    --vert-soft: #16352A;
+    --danger: #F97066;
+    --focus-ring: #E8683F;
+  }
+}
+
+:root[data-theme="dark"] {
+  --surface: #17140F;
+  --surface-raised: #221E18;
+  --line: #3A342C;
+  --ink: #F3EEE6;
+  --ink-muted: #A9A39A;
+  --terre: #E8683F;
+  --on-terre: #17140F;
+  --terre-soft: #3B2219;
+  --terre-ink: #F08A66;
+  --vert: #4CC38A;
+  --vert-soft: #16352A;
+  --danger: #F97066;
+  --focus-ring: #E8683F;
+}
+
+/* Base */
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--ink);
+  font: var(--text-body);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}

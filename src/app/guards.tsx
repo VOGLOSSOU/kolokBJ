@@ -6,9 +6,9 @@ import { STAGE_HOME, stageOf, type Stage } from '@/features/auth/stage'
 
 function SessionError({ onRetry }: { onRetry: () => void }) {
   return (
-    <main className="mx-auto flex min-h-dvh max-w-md flex-col justify-center gap-4 px-5">
-      <h1 className="text-2xl font-bold">Connexion impossible</h1>
-      <p className="text-muted">On n'arrive pas à joindre Kolok. Vérifie ton réseau et réessaie.</p>
+    <main className="mx-auto flex min-h-dvh max-w-md flex-col justify-center gap-4 px-4">
+      <h1 className="type-title-1">Connexion impossible</h1>
+      <p className="text-ink-muted">On n'arrive pas à joindre Kolok. Vérifie ton réseau et réessaie.</p>
       <Button onClick={onRetry}>Réessayer</Button>
     </main>
   )

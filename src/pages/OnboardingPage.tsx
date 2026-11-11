@@ -33,13 +33,13 @@ export default function OnboardingPage() {
 
   return (
     <StatusScreen title="Bienvenue ! Une dernière étape">
-      <form onSubmit={submit} className="flex flex-col gap-5" noValidate>
+      <form onSubmit={submit} className="flex flex-col gap-6" noValidate>
         <div className="flex flex-col gap-2">
-          <label htmlFor="whatsapp" className="font-semibold text-ink">
+          <label htmlFor="whatsapp" className="type-body-strong text-ink">
             Ton numéro WhatsApp
           </label>
-          <div className="flex items-center gap-2 rounded-xl border border-line bg-surface px-3 focus-within:border-brand">
-            <span className="text-muted">+229</span>
+          <div className="flex items-center gap-2 rounded-sm border border-line bg-surface-raised px-3 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-focus-ring">
+            <span className="text-ink-muted">+229</span>
             <input
               id="whatsapp"
               type="tel"
@@ -53,27 +53,27 @@ export default function OnboardingPage() {
               className="h-12 min-w-0 flex-1 bg-transparent text-ink outline-none"
             />
           </div>
-          <p id="whatsapp-help" className={`text-sm ${phoneError ? 'text-danger' : ''}`}>
+          <p id="whatsapp-help" className={`type-small ${phoneError ? 'text-danger' : ''}`}>
             {phoneError ??
               'Il reste caché. Il n’est révélé qu’à un étudiant dont tu acceptes la demande, ou qui accepte la tienne.'}
           </p>
         </div>
 
-        <div className="rounded-2xl border border-line bg-surface p-4">
-          <p className="font-semibold text-ink">Les règles de la communauté</p>
-          <ul className="mt-2 list-disc space-y-1 pl-5 text-sm">
+        <div className="rounded-md border border-line bg-surface-raised p-4">
+          <p className="type-body-strong text-ink">Les règles de la communauté</p>
+          <ul className="type-small mt-2 list-disc space-y-1 pl-6">
             {COMMUNITY_RULES.map((rule) => (
               <li key={rule}>{rule}</li>
             ))}
           </ul>
         </div>
 
-        <label className="flex items-start gap-3 text-sm">
+        <label className="type-small flex items-start gap-3">
           <input
             type="checkbox"
             checked={accepted}
             onChange={(event) => setAccepted(event.target.checked)}
-            className="mt-0.5 size-5 shrink-0 accent-brand"
+            className="size-5 shrink-0 accent-terre"
           />
           <span>
             J'accepte les règles de la communauté, les{' '}
@@ -89,7 +89,7 @@ export default function OnboardingPage() {
         </label>
 
         {error && (
-          <p role="alert" className="text-sm text-danger">
+          <p role="alert" className="type-small text-danger">
             {error.message}
           </p>
         )}

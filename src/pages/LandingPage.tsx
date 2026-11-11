@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import { Logo } from '@/components/Logo'
 import { GoogleSignInButton } from '@/features/auth/GoogleSignInButton'
 
 const PROMISES = [
@@ -7,21 +8,21 @@ const PROMISES = [
   'Tu vois d’abord les étudiants compatibles avec ton budget, ton quartier et ton rythme de vie.',
 ]
 
-/** Contenu provisoire : le texte et la mise en page définitifs viendront avec le design. */
+/** Écran d'accueil : la promesse, trois raisons d'y croire, une seule action. */
 export default function LandingPage() {
   return (
-    <main className="mx-auto flex min-h-dvh max-w-md flex-col justify-center gap-8 px-5 py-10">
-      <div className="flex flex-col gap-3">
-        <p className="text-lg font-bold text-brand">Kolok</p>
-        <h1 className="text-3xl leading-tight font-bold">
-          Trouve un coloc étudiant fiable, et partage ton loyer en confiance.
+    <main className="mx-auto flex min-h-dvh max-w-md flex-col justify-center gap-8 px-4 py-8">
+      <div className="flex flex-col gap-6">
+        <Logo />
+        <h1 className="type-display">
+          Trouve un coloc de confiance, qui vit comme toi.
         </h1>
       </div>
 
-      <ul className="flex flex-col gap-3 text-muted">
+      <ul className="flex flex-col gap-3 text-ink-muted">
         {PROMISES.map((promise) => (
           <li key={promise} className="flex gap-3">
-            <span aria-hidden="true" className="mt-2 size-2 shrink-0 rounded-full bg-brand" />
+            <span aria-hidden="true" className="mt-2 size-2 shrink-0 rounded-pill bg-terre" />
             {promise}
           </li>
         ))}
@@ -29,7 +30,7 @@ export default function LandingPage() {
 
       <GoogleSignInButton />
 
-      <p className="text-center text-xs text-muted">
+      <p className="type-small text-center text-ink-muted">
         En continuant, tu pourras lire et accepter nos{' '}
         <Link to="/conditions" className="underline">
           conditions d'utilisation

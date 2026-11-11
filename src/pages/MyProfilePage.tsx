@@ -17,9 +17,9 @@ export default function MyProfilePage() {
           'Bouton « Supprimer mon compte » qui efface toutes les données personnelles.',
         ]}
       />
-      <div className="flex flex-col gap-3 px-5">
+      <div className="flex flex-col gap-3 px-4">
         {user?.whatsapp && (
-          <p className="text-sm text-muted">WhatsApp : {formatBeninPhone(user.whatsapp)}</p>
+          <p className="type-small text-ink-muted">WhatsApp : {formatBeninPhone(user.whatsapp)}</p>
         )}
         <Button variant="secondary" onClick={() => logout()} disabled={isPending}>
           Se déconnecter

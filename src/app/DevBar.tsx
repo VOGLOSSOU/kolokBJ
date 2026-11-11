@@ -31,7 +31,7 @@ export function DevBar() {
   }
 
   return (
-    <label className="fixed top-2 right-2 z-50 flex items-center gap-2 rounded-full bg-ink px-3 py-1 text-xs text-surface opacity-80">
+    <label className="fixed right-2 bottom-20 z-50 flex items-center gap-2 type-caption rounded-pill bg-ink px-3 py-1 text-surface opacity-80">
       Démo
       <select
         value={current}

@@ -72,18 +72,18 @@ export function GoogleSignInButton() {
       ) : useRealGoogle ? (
         <div ref={container} className="min-h-11" aria-busy={isPending} />
       ) : (
-        <p className="text-sm text-danger">
+        <p className="type-small text-danger">
           Connexion indisponible : VITE_GOOGLE_CLIENT_ID n'est pas configuré.
         </p>
       )}
 
       {scriptFailed && (
-        <p role="alert" className="text-sm text-danger">
+        <p role="alert" className="type-small text-danger">
           Impossible de joindre Google. Vérifie ta connexion et recharge la page.
         </p>
       )}
       {error && (
-        <p role="alert" className="text-sm text-danger">
+        <p role="alert" className="type-small text-danger">
           {error.message}
         </p>
       )}

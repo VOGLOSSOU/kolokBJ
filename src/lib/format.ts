@@ -1,8 +1,8 @@
 const fcfa = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 })
 
-/** 15000 -> "15 000 FCFA" */
+/** 15000 -> "15 000 F" (écriture de la charte : montants en FCFA, notés « F »). */
 export function formatFcfa(amount: number): string {
-  return `${fcfa.format(amount)} FCFA`
+  return `${fcfa.format(amount)} F`
 }
 
 /**

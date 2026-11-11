@@ -1,0 +1,59 @@
+{
+  "name": "Kolok",
+  "version": 1,
+  "color": {
+    "themes": [{"id": "light", "name": "Clair"}, {"id": "dark", "name": "Sombre"}],
+    "tokens": [
+      {"name": "surface", "value": {"light": "#FBF7F2", "dark": "#17140F"}, "usage": "Fond de page. Un blanc cassé chaud, jamais un blanc pur."},
+      {"name": "surface-raised", "value": {"light": "#FFFFFF", "dark": "#221E18"}, "usage": "Cartes de profil, modales, champs de formulaire posés sur surface."},
+      {"name": "line", "value": {"light": "#E8E0D5", "dark": "#3A342C"}, "usage": "Bordures de cartes et séparateurs. Décoratif uniquement, jamais pour du texte."},
+      {"name": "ink", "value": {"light": "#1E2A4A", "dark": "#F3EEE6"}, "usage": "Bleu nuit. Texte principal et titres sur surface et surface-raised, dans les deux thèmes. Couleur de la confiance."},
+      {"name": "ink-muted", "value": {"light": "#5B6478", "dark": "#A9A39A"}, "usage": "Texte secondaire (filière, quartier, dates) sur surface et surface-raised."},
+      {"name": "terre", "value": {"light": "#C4441E", "dark": "#E8683F"}, "usage": "Terre de barre, la couleur de marque. Bouton principal (une fois par écran), logo, accents forts. Texte posé dessus : on-terre."},
+      {"name": "on-terre", "value": {"light": "#FFFFFF", "dark": "#17140F"}, "usage": "Texte et icônes sur un fond terre. Contraste 5:1 en clair, 5,7:1 en sombre."},
+      {"name": "terre-soft", "value": {"light": "#F9E1D6", "dark": "#3B2219"}, "usage": "Fond doux de marque : tags de quartier, zones mises en avant, état sélectionné. Texte posé dessus : terre-ink."},
+      {"name": "terre-ink", "value": {"light": "#A8381A", "dark": "#F08A66"}, "usage": "Texte de marque sur terre-soft, surface et surface-raised (liens, tags)."},
+      {"name": "vert", "value": {"light": "#16704C", "dark": "#4CC38A"}, "usage": "Validé et réussite uniquement : badge Profil validé, coloc confirmée, score élevé. Jamais décoratif."},
+      {"name": "vert-soft", "value": {"light": "#DDF3E8", "dark": "#16352A"}, "usage": "Fond du badge Profil validé. Texte posé dessus : vert."},
+      {"name": "soleil", "value": {"light": "#F2B42C", "dark": "#F2B42C"}, "usage": "Jaune soleil, accent rare : surbrillance, illustrations, nouveauté. Jamais comme couleur de texte sur fond clair."},
+      {"name": "danger", "value": {"light": "#B42318", "dark": "#F97066"}, "usage": "Erreurs, signalement, bannissement. Texte d'erreur sur surface et surface-raised."},
+      {"name": "focus-ring", "value": {"light": "#C4441E", "dark": "#E8683F"}, "usage": "Anneau de focus clavier : 2px, décalé de 2px, sur tous les éléments interactifs."}
+    ]
+  },
+  "type": {
+    "fonts": [],
+    "families": {
+      "sans": "\"Plus Jakarta Sans\", system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif"
+    },
+    "groups": [
+      {"name": "Titres", "family": "sans", "styles": [
+        {"name": "display", "fontSize": "40px", "lineHeight": "44px", "fontWeight": 800},
+        {"name": "title-1", "fontSize": "28px", "lineHeight": "34px", "fontWeight": 700},
+        {"name": "title-2", "fontSize": "20px", "lineHeight": "28px", "fontWeight": 700}
+      ]},
+      {"name": "Texte", "family": "sans", "styles": [
+        {"name": "body", "fontSize": "16px", "lineHeight": "24px", "fontWeight": 400},
+        {"name": "body-strong", "fontSize": "16px", "lineHeight": "24px", "fontWeight": 600},
+        {"name": "small", "fontSize": "14px", "lineHeight": "20px", "fontWeight": 400},
+        {"name": "caption", "fontSize": "12px", "lineHeight": "16px", "fontWeight": 600}
+      ]}
+    ]
+  },
+  "spacing": {
+    "tokens": [
+      {"name": "space-1", "value": "4px", "usage": "Écart entre une icône et son texte."},
+      {"name": "space-2", "value": "8px", "usage": "Écart entre tags, padding vertical des badges."},
+      {"name": "space-3", "value": "12px", "usage": "Écart entre lignes d'infos d'une carte."},
+      {"name": "space-4", "value": "16px", "usage": "Padding des cartes et marge latérale de l'écran mobile."},
+      {"name": "space-6", "value": "24px", "usage": "Écart entre deux cartes ou deux blocs de formulaire."},
+      {"name": "space-8", "value": "32px", "usage": "Écart entre sections d'un écran."}
+    ]
+  },
+  "radius": {
+    "tokens": [
+      {"name": "radius-sm", "value": "8px", "usage": "Champs de formulaire, petites vignettes."},
+      {"name": "radius-md", "value": "16px", "usage": "Cartes de profil, boutons, modales. La forme signature : douce, jamais anguleuse."},
+      {"name": "radius-pill", "value": "999px", "usage": "Badges, tags de quartier, avatars ronds, score de compatibilité."}
+    ]
+  }
+}

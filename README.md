@@ -21,7 +21,7 @@ npm run dev
 
 ## Travailler sans backend
 
-Avec `VITE_API_MOCK=true` dans `.env.local`, la session est simulée dans le navigateur. Une petite barre « Démo » en haut à droite permet de changer l'étape de l'utilisateur fictif (non connecté, en attente, rejeté, banni, validé, admin) pour voir chaque écran.
+Avec `VITE_API_MOCK=true` dans `.env.local`, la session est simulée dans le navigateur. Une petite barre « Démo » en bas à droite permet de changer l'étape de l'utilisateur fictif (non connecté, en attente, rejeté, banni, validé, admin) pour voir chaque écran.
 
 Pour brancher le vrai backend : `VITE_API_MOCK=false`, `VITE_GOOGLE_CLIENT_ID` renseigné, et `API_PROXY_TARGET` pointé sur Express. En dev, Vite relaie `/api` vers Express, ce qui garde le cookie de session sur la même origine.
 
@@ -43,5 +43,6 @@ src/
 
 - **La logique métier reste dans l'API** (matching, score, quotas). Le front affiche, pour que l'API serve telle quelle à la future appli mobile.
 - **L'étape de l'utilisateur décide des écrans accessibles.** Elle est calculée dans `src/features/auth/stage.ts` et appliquée par `src/app/guards.tsx`. Un profil en attente, rejeté ou banni ne voit aucun autre profil.
-- **Les couleurs et polices vivent dans `src/index.css`** (bloc `@theme`). Les valeurs actuelles sont provisoires. On n'écrit jamais une couleur en dur dans un composant.
-- **Léger d'abord** : cible Android d'entrée de gamme en 3G. Polices système, pages découpées, images en WebP.
+- **La charte graphique est dans [design/](design/)** : `KOLOK_DESIGN.md` (règles d'usage, ton, composants) et `kolok-tokens.css` (couleurs, typographie, espacements, rayons, thèmes clair et sombre). Les classes Tailwind sont branchées sur ces variables dans `src/index.css` : `bg-terre`, `text-ink-muted`, `type-title-1`, `rounded-md`, `p-4`... Aucune couleur, taille ou rayon en dur dans un composant, et les classes Tailwind hors charte (`bg-red-500`, `text-sm`, `rounded-xl`) n'existent pas.
+- **Un seul bouton `primary` (terre) par écran.** Les autres sont `secondary` ou `ghost`.
+- **Léger d'abord** : cible Android d'entrée de gamme en 3G. Police servie par l'appli (aucun appel externe), pages découpées, images en WebP.

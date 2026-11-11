@@ -1,10 +1,12 @@
+import { Inbox, Search, UserRound, type LucideIcon } from 'lucide-react'
 import { Link, NavLink, Outlet } from 'react-router'
+import { Logo } from '@/components/Logo'
 import { useSession } from '@/features/auth/session'
 
-const TABS = [
-  { to: '/decouvrir', label: 'Découvrir' },
-  { to: '/demandes', label: 'Demandes' },
-  { to: '/moi', label: 'Mon profil' },
+const TABS: { to: string; label: string; icon: LucideIcon }[] = [
+  { to: '/decouvrir', label: 'Découvrir', icon: Search },
+  { to: '/demandes', label: 'Demandes', icon: Inbox },
+  { to: '/moi', label: 'Mon profil', icon: UserRound },
 ]
 
 /** Cadre de l'appli pour les profils validés : en-tête et navigation basse, pensés pour le pouce. */
@@ -13,12 +15,12 @@ export function AppShell() {
 
   return (
     <div className="mx-auto flex min-h-dvh max-w-xl flex-col">
-      <header className="sticky top-0 z-10 flex h-14 items-center justify-between border-b border-line bg-surface px-5">
-        <Link to="/decouvrir" className="text-lg font-bold text-brand">
-          Kolok
+      <header className="sticky top-0 z-10 flex h-14 items-center justify-between border-b border-line bg-surface px-4">
+        <Link to="/decouvrir" aria-label="Kolok, retour à Découvrir">
+          <Logo />
         </Link>
         {user?.role === 'ADMIN' && (
-          <Link to="/admin" className="text-sm font-semibold text-muted">
+          <Link to="/admin" className="type-body-strong text-terre-ink">
             Admin
           </Link>
         )}
@@ -30,20 +32,21 @@ export function AppShell() {
 
       <nav
         aria-label="Navigation principale"
-        className="fixed inset-x-0 bottom-0 z-10 border-t border-line bg-surface pb-[env(safe-area-inset-bottom)]"
+        className="fixed inset-x-0 bottom-0 z-10 border-t border-line bg-surface-raised pb-[env(safe-area-inset-bottom)]"
       >
         <ul className="mx-auto flex max-w-xl">
-          {TABS.map((tab) => (
-            <li key={tab.to} className="flex-1">
+          {TABS.map(({ to, label, icon: Icon }) => (
+            <li key={to} className="flex-1">
               <NavLink
-                to={tab.to}
+                to={to}
                 className={({ isActive }) =>
-                  `flex h-14 items-center justify-center text-sm font-semibold ${
-                    isActive ? 'text-brand' : 'text-muted'
+                  `type-caption flex h-16 flex-col items-center justify-center gap-1 ${
+                    isActive ? 'text-terre-ink' : 'text-ink'
                   }`
                 }
               >
-                {tab.label}
+                <Icon size={24} strokeWidth={1.75} aria-hidden="true" />
+                {label}
               </NavLink>
             </li>
           ))}
