@@ -1,4 +1,3 @@
-import { BadgeCheck } from 'lucide-react'
 import { Link, Navigate } from 'react-router'
 import { Logo } from '@/components/Logo'
 import { buttonClasses } from '@/components/ui/buttonStyles'
@@ -48,69 +47,6 @@ const RULES = [
 const CONTAINER = 'mx-auto w-full max-w-6xl px-4 md:px-8'
 
 /**
- * Aperçu d'un profil tel qu'il apparaîtra dans l'appli, avec des données d'exemple.
- * Purement illustratif : visible à partir de la tablette, à côté de l'accroche.
- */
-function ProfilePreview() {
-  return (
-    <figure className="flex flex-col gap-3">
-      <div className="flex flex-col gap-4 rounded-md border border-line bg-surface-raised p-6">
-        <div className="flex items-center gap-4">
-          <span
-            aria-hidden="true"
-            className="type-title-2 grid size-16 shrink-0 place-items-center rounded-pill bg-terre-soft text-terre-ink"
-          >
-            A
-          </span>
-          <div className="flex min-w-0 flex-col gap-1">
-            <p className="type-title-2">Arsène</p>
-            <p className="type-small text-ink-muted">Licence 2, Géographie - UAC</p>
-          </div>
-        </div>
-
-        <p className="type-caption inline-flex items-center gap-1 self-start rounded-pill bg-vert-soft px-3 py-1 text-vert">
-          <BadgeCheck size={16} strokeWidth={1.75} aria-hidden="true" />
-          Profil validé
-        </p>
-
-        <div className="flex items-center justify-between gap-4 border-t border-line pt-4">
-          <div className="flex flex-col gap-3">
-            <p>
-              <span className="type-small block text-ink-muted">A une chambre-salon, sa part</span>
-              <span className="type-body-strong">{formatFcfa(15000)} par mois</span>
-            </p>
-            <ul className="flex flex-wrap gap-2">
-              {['Zogbadjè', 'Tankpè'].map((quartier) => (
-                <li
-                  key={quartier}
-                  className="type-caption rounded-pill bg-terre-soft px-3 py-1 text-terre-ink"
-                >
-                  {quartier}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <p className="flex shrink-0 flex-col items-center gap-1">
-            <span className="type-display grid size-24 place-items-center rounded-pill border-2 border-vert text-vert">
-              86
-            </span>
-            <span className="type-caption text-ink-muted">compatibilité</span>
-          </p>
-        </div>
-
-        <ul className="type-small flex flex-col gap-1 text-ink-muted">
-          <li>Se lève à 6 h, révise le soir</li>
-          <li>Non fumeur, peu d'invités</li>
-        </ul>
-      </div>
-      <figcaption className="type-small text-center text-ink-muted">
-        Exemple de profil, tel que tu le verras dans l'appli.
-      </figcaption>
-    </figure>
-  )
-}
-
-/**
  * Page d'accueil publique. Elle s'affiche tout de suite, pour tout le monde,
  * sans attendre la session ni le backend. Un utilisateur déjà connecté est
  * simplement renvoyé vers son écran dès que sa session est connue.
@@ -133,21 +69,18 @@ export default function LandingPage() {
       </header>
 
       <main className="flex flex-1 flex-col gap-8 py-8 lg:gap-0 lg:py-0">
-        <section className={`${CONTAINER} grid items-center gap-8 md:grid-cols-2 lg:py-8`}>
-          <div className="flex flex-col gap-6 lg:py-8">
+        <section className={`${CONTAINER} lg:py-8`}>
+          <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 py-8 text-center">
             <h1 className="type-display">Trouve un coloc de confiance, qui vit comme toi.</h1>
             <p className="text-ink-muted">
               Kolok aide les étudiants du Bénin à partager un loyer avec quelqu'un de fiable et de
               compatible. On démarre autour du campus d'Abomey-Calavi : Zogbadjè, Tankpè,
               Bidossessi, ITA.
             </p>
-            <div id="commencer" className="flex scroll-mt-24 flex-col gap-3 sm:max-w-sm">
+            <div id="commencer" className="flex w-full max-w-sm scroll-mt-24 flex-col gap-3">
               <GoogleSignInButton />
-              <p className="type-small text-center text-ink-muted">C'est gratuit.</p>
+              <p className="type-small text-ink-muted">C'est gratuit.</p>
             </div>
-          </div>
-          <div className="hidden md:block">
-            <ProfilePreview />
           </div>
         </section>
 
