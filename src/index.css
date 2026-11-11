@@ -1,0 +1,41 @@
+@import 'tailwindcss';
+
+/*
+ * Jetons de design de Kolok.
+ * VALEURS PROVISOIRES : c'est le seul endroit à modifier quand la charte arrive.
+ * Chaque jeton génère ses classes Tailwind (bg-brand, text-ink, border-line...).
+ * Penser à reporter la couleur de marque dans vite.config.ts (manifest PWA)
+ * et dans index.html (meta theme-color).
+ */
+@theme {
+  /* Polices système : aucun téléchargement, important en 3G. */
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  --color-brand: #0f766e;
+  --color-brand-strong: #115e59;
+  --color-on-brand: #ffffff;
+
+  --color-canvas: #fafaf9;
+  --color-surface: #ffffff;
+  --color-ink: #1c1917;
+  --color-muted: #57534e;
+  --color-line: #e7e5e4;
+
+  --color-danger: #b91c1c;
+  --color-success: #15803d;
+  --color-warning: #b45309;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-ink antialiased;
+  }
+
+  #root {
+    min-height: 100dvh;
+  }
+}
