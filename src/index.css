@@ -114,6 +114,13 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* Défilement doux vers les ancres (bouton « Commencer »), sauf si l'utilisateur préfère sans animation. */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   #root {
     min-height: 100dvh;
   }

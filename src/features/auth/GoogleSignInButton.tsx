@@ -66,7 +66,7 @@ export function GoogleSignInButton() {
   return (
     <div className="flex flex-col items-stretch gap-3">
       {env.mock ? (
-        <Button onClick={() => login('mock-credential')} disabled={isPending}>
+        <Button variant="secondary" onClick={() => login('mock-credential')} disabled={isPending}>
           Continuer avec Google (démo)
         </Button>
       ) : useRealGoogle ? (
