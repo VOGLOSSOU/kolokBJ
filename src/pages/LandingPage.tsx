@@ -1,46 +1,144 @@
-import { Link } from 'react-router'
+import { Link, Navigate } from 'react-router'
 import { Logo } from '@/components/Logo'
 import { GoogleSignInButton } from '@/features/auth/GoogleSignInButton'
+import { useSession } from '@/features/auth/session'
+import { STAGE_HOME, stageOf } from '@/features/auth/stage'
 
-const PROMISES = [
-  'Réservé aux étudiants : pas d’agents, pas de démarcheurs.',
-  'Chaque profil est relu à la main avant d’être visible.',
-  'Tu vois d’abord les étudiants compatibles avec ton budget, ton quartier et ton rythme de vie.',
+const STEPS = [
+  {
+    title: 'Crée ton profil',
+    text: 'Tes études, ton budget, tes quartiers et ton rythme de vie : réveil, révisions, invités, propreté.',
+  },
+  {
+    title: 'On relit ton profil',
+    text: 'Chaque profil est relu avant d’être visible. Tu as une réponse en moins de 24 h.',
+  },
+  {
+    title: 'Tu vois qui te correspond',
+    text: 'Seulement des étudiants compatibles avec ton budget et ton quartier, classés par score de compatibilité.',
+  },
+  {
+    title: 'Vous vous rencontrez',
+    text: 'Tu proposes une coloc. Si l’autre accepte, vous recevez vos numéros WhatsApp et vous organisez la visite.',
+  },
 ]
 
-/** Écran d'accueil : la promesse, trois raisons d'y croire, une seule action. */
+const SITUATIONS = [
+  {
+    title: 'Tu as déjà un logement',
+    text: 'Présente-toi, montre ta chambre et ses détails. Les étudiants qui cochent tes critères te trouvent.',
+  },
+  {
+    title: 'Tu n’as pas encore loué',
+    text: 'Dis ce que tu cherches, et trouve quelqu’un avec qui te lancer pour louer ensemble.',
+  },
+]
+
+const RULES = [
+  'Réservé aux étudiants. Pas d’agents, pas de démarcheurs.',
+  'Aucune demande d’argent : pas de frais de visite, pas d’avance avant rencontre.',
+  'Ton numéro WhatsApp reste caché tant que vous n’avez pas accepté tous les deux.',
+  'Un bouton Signaler sur chaque profil. Une violation des règles, c’est le bannissement.',
+]
+
+/**
+ * Page d'accueil publique. Elle s'affiche tout de suite, pour tout le monde,
+ * sans attendre la session ni le backend. Un utilisateur déjà connecté est
+ * simplement renvoyé vers son écran dès que sa session est connue.
+ */
 export default function LandingPage() {
+  const { data: user } = useSession()
+
+  if (user) return <Navigate to={STAGE_HOME[stageOf(user)]} replace />
+
   return (
-    <main className="mx-auto flex min-h-dvh max-w-md flex-col justify-center gap-8 px-4 py-8">
-      <div className="flex flex-col gap-6">
+    <div className="mx-auto flex max-w-xl flex-col gap-8 px-4 py-6">
+      <header>
         <Logo />
-        <h1 className="type-display">
-          Trouve un coloc de confiance, qui vit comme toi.
-        </h1>
-      </div>
+      </header>
 
-      <ul className="flex flex-col gap-3 text-ink-muted">
-        {PROMISES.map((promise) => (
-          <li key={promise} className="flex gap-3">
-            <span aria-hidden="true" className="mt-2 size-2 shrink-0 rounded-pill bg-terre" />
-            {promise}
-          </li>
-        ))}
-      </ul>
+      <main className="flex flex-col gap-8">
+        <section className="flex flex-col gap-6 pt-8">
+          <h1 className="type-display">Trouve un coloc de confiance, qui vit comme toi.</h1>
+          <p className="text-ink-muted">
+            Kolok aide les étudiants du Bénin à partager un loyer avec quelqu'un de fiable et de
+            compatible. On démarre autour du campus d'Abomey-Calavi : Zogbadjè, Tankpè, Bidossessi,
+            ITA.
+          </p>
+          <div className="flex flex-col gap-3">
+            <GoogleSignInButton />
+            <p className="type-small text-center text-ink-muted">C'est gratuit.</p>
+          </div>
+        </section>
 
-      <GoogleSignInButton />
+        <section className="flex flex-col gap-3">
+          <h2 className="type-title-2">Seul, le loyer est trop lourd</h2>
+          <p className="text-ink-muted">
+            Avec 15 000 F de budget, tu tombes sur des entrées-couchées à 27 000 ou 30 000 F. À
+            deux, ça passe. Encore faut-il trouver la bonne personne, et les groupes Facebook sont
+            noyés sous les annonces d'agents.
+          </p>
+        </section>
 
-      <p className="type-small text-center text-ink-muted">
-        En continuant, tu pourras lire et accepter nos{' '}
-        <Link to="/conditions" className="underline">
-          conditions d'utilisation
-        </Link>{' '}
-        et notre{' '}
-        <Link to="/confidentialite" className="underline">
-          politique de confidentialité
-        </Link>
-        .
-      </p>
-    </main>
+        <section className="flex flex-col gap-4">
+          <h2 className="type-title-2">Comment ça marche</h2>
+          <ol className="flex flex-col gap-4">
+            {STEPS.map((step, index) => (
+              <li key={step.title} className="flex gap-3">
+                <span
+                  aria-hidden="true"
+                  className="type-body-strong grid size-8 shrink-0 place-items-center rounded-pill bg-terre-soft text-terre-ink"
+                >
+                  {index + 1}
+                </span>
+                <div className="flex flex-col gap-1">
+                  <h3 className="type-body-strong">{step.title}</h3>
+                  <p className="text-ink-muted">{step.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="flex flex-col gap-4">
+          <h2 className="type-title-2">Deux façons de commencer</h2>
+          <ul className="flex flex-col gap-3">
+            {SITUATIONS.map((situation) => (
+              <li
+                key={situation.title}
+                className="flex flex-col gap-1 rounded-md border border-line bg-surface-raised p-4"
+              >
+                <h3 className="type-body-strong">{situation.title}</h3>
+                <p className="text-ink-muted">{situation.text}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="flex flex-col gap-4">
+          <h2 className="type-title-2">Entre étudiants, en confiance</h2>
+          <ul className="flex flex-col gap-3 text-ink-muted">
+            {RULES.map((rule) => (
+              <li key={rule} className="flex gap-3">
+                <span aria-hidden="true" className="mt-2 size-2 shrink-0 rounded-pill bg-terre" />
+                {rule}
+              </li>
+            ))}
+          </ul>
+        </section>
+      </main>
+
+      <footer className="type-small flex flex-col gap-2 border-t border-line pt-6 text-ink-muted">
+        <p>Kolok n'est pas un site d'annonces de logements, ni une appli de rencontre.</p>
+        <p className="flex gap-4">
+          <Link to="/conditions" className="underline">
+            Conditions d'utilisation
+          </Link>
+          <Link to="/confidentialite" className="underline">
+            Confidentialité
+          </Link>
+        </p>
+      </footer>
+    </div>
   )
 }

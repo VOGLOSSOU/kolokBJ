@@ -15,15 +15,12 @@ export const router = createBrowserRouter([
     HydrateFallback: FullPageLoader,
     ErrorBoundary: RouteError,
     children: [
-      // Pages publiques
+      // Pages publiques : visibles par tout le monde, sans session ni backend.
+      { path: '/', lazy: page(() => import('@/pages/LandingPage')) },
       { path: '/conditions', lazy: page(() => import('@/pages/TermsPage')) },
       { path: '/confidentialite', lazy: page(() => import('@/pages/PrivacyPage')) },
 
       // Chaque étape du parcours a son écran, et n'a accès qu'à lui.
-      {
-        element: <StageGate allow={['anonymous']} />,
-        children: [{ path: '/', lazy: page(() => import('@/pages/LandingPage')) }],
-      },
       {
         element: <StageGate allow={['needs-whatsapp']} />,
         children: [{ path: '/bienvenue', lazy: page(() => import('@/pages/OnboardingPage')) }],

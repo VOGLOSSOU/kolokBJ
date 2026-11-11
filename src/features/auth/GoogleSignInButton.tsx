@@ -64,16 +64,17 @@ export function GoogleSignInButton() {
   }, [useRealGoogle, login])
 
   return (
-    <div className="flex flex-col items-center gap-3">
+    <div className="flex flex-col items-stretch gap-3">
       {env.mock ? (
         <Button onClick={() => login('mock-credential')} disabled={isPending}>
           Continuer avec Google (démo)
         </Button>
       ) : useRealGoogle ? (
-        <div ref={container} className="min-h-11" aria-busy={isPending} />
+        <div ref={container} className="flex min-h-12 justify-center" aria-busy={isPending} />
       ) : (
-        <p className="type-small text-danger">
-          Connexion indisponible : VITE_GOOGLE_CLIENT_ID n'est pas configuré.
+        // Connexion pas encore branchée (pas de VITE_GOOGLE_CLIENT_ID) : on l'annonce, sans message d'erreur.
+        <p className="type-body-strong rounded-md bg-terre-soft px-4 py-3 text-center text-terre-ink">
+          Les inscriptions ouvrent bientôt.
         </p>
       )}
 
