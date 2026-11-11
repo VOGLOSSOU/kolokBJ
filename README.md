@@ -1,4 +1,4 @@
-# Kolok — frontend
+# Kolok - frontend
 
 Web app mobile-first (PWA) qui aide les étudiants béninois à trouver un colocataire fiable et compatible. Le cahier des charges du MVP est dans [docs/kolokBJ.pdf](docs/kolokBJ.pdf).
 
